@@ -85,5 +85,3 @@ class DisjointSet:
 				root_b.parent = root_a
 				root_a.rank+=1
 
-
-

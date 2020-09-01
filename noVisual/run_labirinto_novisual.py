@@ -19,17 +19,13 @@ def play_maze(maze_obj, limit):
 	info = maze_obj.move(current)
 	current = info[1]
 	options = info[2]
-	soma = 0.0
-	count = 0.0
+		
 	move = 0
 
 	# sai qdo a quant de movimentos > limite ou chegou na solucao
 	while not (move > limit) and not maze_obj.is_done():
 		#ALTERAR AQUI O ALGORITMO QUE VOCÊ QUER UTILIZAR
-		# action = gbc063.algoritmo(current, options)
-		# action = gbc063_prof_limitada.algoritmo(current, options)
-		action = gbc063_profundidade.algoritmo(current, options)
-		
+		action = gbc063_prof_limitada.algoritmo(current, options)
 
 	#	para debug: escreve a posicao atual e as acoes possiveis
 	#	print('pos:',current,'\noptions\n')
@@ -44,8 +40,6 @@ def play_maze(maze_obj, limit):
 		move += 1
 
 
-
-
 	# saindo
 	if (move < limit):
 		print('Objetivo atingido em ',move,' movimentos!');
@@ -53,17 +47,7 @@ def play_maze(maze_obj, limit):
 		print(maze_obj.path)
 	else:
 		print('Vc fez ',move,' movimentos sem sucesso!\n','Tente de novo!\n\n');
-
-	#teste 100 de rodadas
-	for n in range(0, 99):
-		if (move < limit):
-			soma += move
-			count += len(maze_obj.path)
-
-	print('Media de ',soma / 100 ,' movimentos!');
-	print('Media de (',count / 100 ,' passos ):')
-			
-
+		
 
 def main():
 
