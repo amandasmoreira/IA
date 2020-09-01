@@ -8,7 +8,8 @@ adapted by Dino Franklin
 import os, sys, random, time, threading
 import maze_gbc063 as maze
 import gbc063
-
+import gbc063_profundidade
+import gbc063_prof_limitada 
 
 # defalt ANSI settings from user
 COLOR_DEFAULT = u'\u001b[0m'
@@ -45,12 +46,16 @@ def play_maze(maze_obj, limit,tinkle):
 	info = maze_obj.move(current)
 	current = info[1]
 	options = info[2]
-		
+	soma = 0.0
+	count = 0.0				
 	move = 0
 
 	# sai qdo atinge o max de passos ou chega no objetivo
 	while not (move > limit) and not maze_obj.is_done():
-		action = gbc063.algoritmo(current, options)
+		#ALTERAR AQUI O ALGORITMO QUE VOCÊ QUER UTILIZAR
+		#action = gbc063.algoritmo(current, options)
+		#action = gbc063_prof_limitada.algoritmo(current, options)
+		action = gbc063_profundidade.algoritmo(current, options)
 
 	# para debug
 	#	action = algoritmo(current, options)
@@ -74,6 +79,14 @@ def play_maze(maze_obj, limit,tinkle):
 	else:
 		print('O objetivo nao foi atingido em ',move,' movimentos.');
 		
+	#teste 100 de rodadas
+	for n in range(0, 99):
+		if (move < limit):
+			soma += move
+			count += len(maze_obj.path)
+
+	print('Media de ',soma / 100 ,' movimentos!');
+	print('Media de (',count / 100 ,' passos ):')
 
 def main():
 
