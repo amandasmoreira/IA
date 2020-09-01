@@ -84,4 +84,3 @@ class DisjointSet:
 				# same rank, set and increment arbitrary root as parent
 				root_b.parent = root_a
 				root_a.rank+=1
-
